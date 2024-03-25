@@ -1,12 +1,9 @@
-
 from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from airflow.providers.http.sensors.http import HttpSensor
 from airflow.hooks.base_hook import BaseHook
 from airflow.operators.python import PythonOperator
-from sqlalchemy import create_engine,MetaData, Table
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy import create_engine
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -44,9 +41,9 @@ def get_candidates(url, headers):
                 estimacion = columns[0].text.strip()
                 encuestadora = columns[1].text.strip()
                 fecha = columns[2].text.strip()
-                xg = columns[4].text.strip()
-                cs = columns[5].text.strip()
-                jam = columns[6].text.strip()
+                xg= int(columns[4].text.strip())
+                cs = int(columns[5].text.strip())
+                jam = int(columns[6].text.strip())
                 candidatos.append({'Estimacion': estimacion,
                                    'Encuestadora': encuestadora,
                                    'Fecha': fecha,
@@ -77,14 +74,14 @@ def get_partidos(url, header):
                 estimacion = columns[0].text.strip()
                 encuestadora = columns[1].text.strip()
                 fecha = columns[2].text.strip()
-                pan = columns[4].text.strip()
-                pri = columns[5].text.strip()
-                prd = columns[6].text.strip()
-                pvem = columns[7].text.strip()
-                pt = columns[8].text.strip()
-                mc = columns[9].text.strip()
-                morena = columns[10].text.strip()
-                nr = columns[11].text.strip()
+                pan= int(columns[4].text.strip())
+                pri = int(columns[5].text.strip())
+                prd = int(columns[6].text.strip())
+                pvem  = int(columns[7].text.strip())
+                pt  = int(columns[8].text.strip())
+                mc = int(columns[9].text.strip())
+                morena = int(columns[10].text.strip())
+                nr = int(columns[11].text.strip())
                 partidos.append({'Estimacion': estimacion,
                                  'Encuestadora': encuestadora,
                                  'Fecha': fecha,
