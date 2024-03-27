@@ -81,7 +81,7 @@ def get_partidos(url, header):
                 pt  = int(columns[8].text.strip())
                 mc = int(columns[9].text.strip())
                 morena = int(columns[10].text.strip())
-                nr = int(columns[11].text.strip())
+                nr = columns[11].text.strip()
                 partidos.append({'Estimacion': estimacion,
                                  'Encuestadora': encuestadora,
                                  'Fecha': fecha,
